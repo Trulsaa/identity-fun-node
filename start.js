@@ -47,8 +47,16 @@ app.get("/id/:provider/authenticate", (req, res) => {
 
     const state = randomString(50);
     req.session.state = state;
+    const { client_id, redirect_uri } = provider
 
     const authorization_request = authorization_endpoint + "?" + qs.stringify({
+      client_id,
+      response_type: "code",
+      scope: "openid email",
+      state,
+      domain_hint,
+      redirect_uri,
+      nonce: state
     });
 
     res.setHeader("Content-Type", "text/html");
