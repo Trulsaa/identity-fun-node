@@ -75,13 +75,19 @@ app.get("/id/:provider/oauth2callback", (req, res) => {
     const provider = providers[req.params.provider];
 
     const { token_endpoint } = provider;
-    const { state } = req.query;
+    const { state, code } = req.query;
 
     if (req.session.state !== state) {
         console.warn("Unexpected state in oauth2callback, XSRF attempt?");
     }
+    const {client_id, client_secret, redirect_uri} = provider
 
     const payload = qs.stringify({
+      code,
+      client_id,
+      client_secret,
+      redirect_uri,
+      grant_type: "authorization_code"
     });
 
     const next_step = "/id/" + req.params.provider + "/token?" + payload;
