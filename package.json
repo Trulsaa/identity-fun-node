@@ -4,7 +4,7 @@
   "description": "Demonstration of OpenID Connect and Oauth2 with Microsoft Azure AD, ID-porten and Slack",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon -x node --inspect start.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +14,7 @@
     "express-session": "^1.15.6",
     "get-json": "^1.0.1",
     "node-static": "^0.7.11",
+    "nodemon": "^1.19.1",
     "qs": "^6.6.0"
   }
 }
